@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <style>
+        html,
+        body,
+        .ui-page {
+            /* specify page */
+            margin-top: 30px;
+            height: 100%;
+            margin: 0px;
+            padding: 0;
+            overflow-y: hidden;
+            background-color: white;
+        }
+
+        .wo-header {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 64px;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        #pageone {
+            top: 30px;
+        }
+
+        p#currentdate {
+            text-align: center;
+            margin-top: 29px;
+            margin-bottom: 0px;
+        }
+
+        p.profilecontent {
+            margin-left: 15px;
+        }
+
+        #p1-pic {
+            background: url("./img/wo-p1-01.jpg");
+            background-size: cover;
+        }
+
+        #p2-pic {
+            background: url("./img/wo-p2-01.jpg");
+            background-size: cover;
+        }
+
+        .ui-content {
+            padding: 0px;
+            height: inherit;
+        }
+
+        .wo-profile {
+            width: 80%;
+            height: 80%;
+        }
+
+        .wo-pic {
+            height: 61.8%;
+            width: 100%;
+        }
+
+        .wo-title1 {
+            /*color: rgb(81, 81, 81);*/
+            margin-left: 15px;
+            margin-top: 40px;
+            font-size: 24px;
+            font-family: "Helvetica Neue Condensed Bold", Helvetica, monospace;
+        }
+
+        .wo-title2 {
+            /*color: rgb(81, 81, 81);*/
+            margin-left: 15px;
+            margin-top: 10px;
+            margin-right: 40px;
+            font-size: 14px;
+            font-family: "Helvetica Neue Condensed Bold", Helvetica, inherit;
+        }
+
+        #p1-bar {
+            background: url("./img/wo-bar-01.jpg");
+            background-size: contain;
+            background-position: center;
+            height: 15%;
+            width: 100%;
+        }
+
+        #p2-bar {
+            background: url("./img/wo-bar-02.jpg");
+            background-size: contain;
+            background-position: center;
+            height: 15%;
+            width: 100%;
+        }
+
+        #profilemenu {
+            margin-top: 20px;
+            left: 15px;
+            height: 32px;
+            width: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            background-image: url("./img/wo-profile.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+        }
+
+        #profilePanel {
+            transition: all 0.3s ease-in-out;
+            width: 40%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            box-sizing: border-box;
+            padding-top: 120px;
+            z-index: 995;
+            transform: translateX(-100%);
+        }
+
+        .slidePanel {
+            position: absolute;
+            top: -200px;
+            left: 0px;
+            z-index: 99;
+            height: 100%;
+            width: 100%;
+        }
+
+        #topPanel {
+            top: -200px;
+            bottom: auto;
+            /*background-color:rgba(255,255,255,0.8);;*/
+        }
+        /*#basePanel{
+          bottom: 0px;
+          top:auto;
+          z-index:99;
+        }*/
+    </style>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+        $(document).on("pagecreate", "#pageone", function() {
+            $(document).on("swiperight", ".ui-content", function(event) {
+                //console.log("swiperight on ui-content");
+                $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo");
+            });
+        });
+
+        $(document).on("pagecreate", "#pagetwo", function() {
+            $(document).on("swipeleft", ".ui-content", function(event) {
+                $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
+            });
+        })
+        //var myElement = document.getElementById('myElement');
+
+        var menuStatus = false;
+        var deltaY = 0;
+        var endY = 0;
+        var topPanelPos = 0;
+
+
+        window.addEventListener("load", function() {
+
+
+
+            var topPanel = document.getElementById("topPanel");
+            // var basePanel = document.getElementById("basePanel");
+            // var page1 = document.getElementById("pageone");
+
+            document.addEventListener("touchstart", function(event) {
+                topPanel.style.transition = "none";
+                endY = event.targetTouches[0].clientY;
+                //console.log(startY);
+            })
+
+            document.addEventListener("touchmove", function(event) {
+                var startY = event.targetTouches[0].clientY;
+                deltaY = startY - endY;
+                endY = startY;
+                topPanelPos += deltaY;
+                if (topPanelPos < 200) {
+                    topPanel.style.transform = "translateY(" + topPanelPos + "px)";
+                } else {
+                    topPanel.style.transform = "translateY(200px)";
+                }
+                //console.log(deltaY);
+            });
+
+            document.addEventListener("touchend", function(event) {
+                topPanel.style.transition = "transform 0.3s ease-in-out";
+                if (topPanelPos >= 100) {
+                    topPanel.style.transform = "translateY(100%)";
+                    topPanelPos = 200;
+                } else if (topPanelPos < 100) {
+                    topPanel.style.transform = "translateY(0%)";
+                    topPanelPos = 0;
+                }
+                deltaY = 0;
+
+            });
+            // var menu = document.getElementById("profilemenu");
+            // console.log(menu);
+            //
+            // var toggleMenu = function(status) {
+            //     var profilePanel = document.getElementById("profilePanel");
+            //     if (status === true) {
+            //         console.log("statustrue")
+            //         profilePanel.style.transform = "translateX(0%)";
+            //     } else {
+            //         profilePanel.style.transform = "translateX(-100%)";
+            //     }
+            // }
+            //
+            // menu.addEventListener("click", function() {
+            //     console.log("hi");
+            //
+            //     menuStatus = !menuStatus;
+            //     toggleMenu(menuStatus);
+            // });
+
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+
+    <!-- <div id="profilePanel">
+        <p class="profilecontent">Myself</p>
+        <p class="profilecontent">My Which One</p>
+        <P class="profilecontent">Setting</p>
+
+    </div> -->
+
+
+    <div data-role="page" id="pageone">
+
+        <div data-role="panel" id="profilePanel" data-display="overlay">
+            <p class="profilecontent">Myself</p>
+            <p class="profilecontent">My Which One</p>
+            <P class="profilecontent">Setting</p>
+            <a href="#pageone" data-rel="close"></a>
+        </div>
+        <div data-role="header" class="wo-header">
+
+          <div id="profilemenu" class="header">
+            <a href="#profilePanel"></a>
+          </div>
+
+          <p id="currentdate">03/27/2017</p>
+
+        </div>
+
+
+    <div data-role="main" class="ui-content">
+
+           <div id="p1-content">
+
+                <div id="p1-pic" class="wo-pic">
+                </div>
+
+                <div id="p1-title" class="wo-title1">
+                    Dear Angelica
+                </div>
+                <div id="p1-title" class="wo-title2">
+                    How Oculus Reinvented VR Animation With a Little Help From Geena Davis
+                </div>
+
+            </div>
+
+            <div data-role="footer" id="p1-bar" class="bar">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div data-role="page" id="pagetwo">
+
+        <div data-role="main" class="ui-content">
+            <div <div id="p2-pic" class="wo-pic">
+            </div>
+            <div id="p2-title" class="wo-title1">
+                Dear Angelica
+            </div>
+
+            <div id="p2-title" class="wo-title2">
+                How Oculus Reinvented VR Animation With a Little Help From Geena Davis
+            </div>
+            <div id="p2-bar" class="bar">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="topPanel" class="slidePanel">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-center ui-corner-all ui-icon-search ui-btn-icon-left">Search</a>
+        </div>
+        <div data-role="main" class="ui-content">
+            <!-- <p>there should be history records</p> -->
+        </div>
+    </div>
+
+    <div id="basePanel" class="slidePanel">
+
+        <div data-role="main" class="ui-content">
+            <a href="#pageone"></a>
+            <img src=" ./img/wo-collection.png">
+        </div>
+    </div>
+
+</body>
+
+</html>
