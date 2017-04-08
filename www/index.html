@@ -6,17 +6,26 @@
 
     <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+
     <style>
-        html,
-        body,
+        body {
+            /*font-family: 'Abel';*/
+        }
+
         .ui-page {
-            /* specify page */
-            /*margin-top: 30px;*/
+            width: 100%;
             height: 100%;
             margin: 0px;
             padding: 0;
             overflow-y: hidden;
             background-color: white;
+        }
+
+        .ui-content {
+            padding: 0px;
+            height: inherit;
+            width: inherit;
         }
 
         .ui-bar-c {
@@ -30,46 +39,88 @@
             margin-left: 10px;
         }
 
-        #topPanel {
-            width: 100%;
-            top: -100%;
+        .mom {
+            display: table;
+        }
+
+        .child {
+            display: table-cell;
+        }
+
+        #header {
+            background-image: url("./img/wo-header-bg.jpg");
+            background-repeat: no-repeat;
+            background-position: bottom;
             position: absolute;
-            bottom: auto;
-            height: 100%
+            padding-left: 3.5%;
+            padding-right: 3.5%;
+            padding-top: 3%;
+            width: 93.2%;
+            height: 8%;
+            z-index: 998;
         }
 
-        #toppanelcontainer {
-            background-color: rgba(255, 255, 255, 0.9);
-            height: 100%;
+        #searchbutton {
+            width: 8%;
+            height: 7%;
+            background-image: url("./img/search.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 80%;
         }
 
-        .wo-header {
+        #topmenu {
+            height: 9%;
+            width: 8%;
+            cursor: pointer;
+            border-radius: 50%;
+            background-image: url("./img/wo-profile.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 80%;
+        }
+
+        #footer {
+            background: url("./img/wo-bar.jpg");
+            background-position: bottom;
+            background-size: 100% 200%;
+            height: 12%;
+            width: 65%;
+            margin-left: 17%;
+            z-index: 998;
             position: absolute;
-            border: 0px;
-            top: 0px;
-            left: 0px;
-            height: 10%;
-            width: 100%;
+            bottom: 8%;
         }
 
-        #p1-content {
-            margin-top: 64px;
+        #date {
+            padding-top: 4%;
+            text-align: center;
+        }
+
+        .p-content {
+            margin-top: 17%;
+            width: 100%;
             height: 75%;
         }
 
+        .wo-pic {
+            /*margin-left: 5%;*/
+            height: 60.7%;
+            width: auto;
+            margin-left: 6.5%;
+            margin-right: 4.5%;
+        }
+
         #p1-pic {
-            background: url("./img/wo-p1-01.jpg");
+            background: url("./img/wo-p2-01.jpg");
             background-size: cover;
+            background-repeat: no-repeat;
         }
 
         #p2-pic {
-            background: url("./img/wo-p2-01.jpg");
+            background: url("./img/wo-p1-01.jpg");
             background-size: cover;
-        }
-
-        .ui-content {
-            padding: 0px;
-            height: inherit;
+            background-repeat: no-repeat;
         }
 
         .wo-profile {
@@ -77,60 +128,32 @@
             height: 80%;
         }
 
-        .wo-pic {
-            height: 61.8%;
-            width: 100%;
-        }
-
         .wo-title1 {
-            /*color: rgb(81, 81, 81);*/
-            margin-left: 15px;
-            margin-top: 40px;
+            margin-left: 6.5%;
+            margin-right: 4.5%;
+            margin-top: 6%;
             font-size: 24px;
-            font-family: "Helvetica Neue Condensed Bold", Helvetica, monospace;
+            text-align: center;
+            font-family: 'font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;';
         }
 
         .wo-title2 {
-            /*color: rgb(81, 81, 81);*/
-            margin-left: 15px;
-            margin-top: 10px;
-            margin-right: 40px;
+            margin-left: 9%;
+            margin-right: 9%;
+            margin-top: 2.4%;
+            font-size: 16px;
+            text-align: center;
+            font-family: 'Abel';
+        }
+
+        .clickToRead {
+            margin-top: 6%;
+            margin-left: 8%;
+            margin-right: 8%;
             font-size: 14px;
-            font-family: "Helvetica Neue Condensed Bold", Helvetica, inherit;
-        }
-
-        #p1-bar {
-            background: url("./img/wo-bar.jpg");
-            background-position: bottom;
-            background-size: 100% 200%;
-            height: 16%;
-            width: 100%;
-            border: 0px;
-            z-index: 998;
-            position: absolute;
-            bottom: 0px;
-        }
-
-        #p2-bar {
-            /*background: url("./img/wo-bar-02.jpg");*/
-            background-size: contain;
-            background-position: center;
-            height: 15%;
-            width: 100%;
-        }
-
-        #profilemenu {
-            margin-top: 20px;
-            left: 15px;
-            height: 32px;
-            width: 28px;
-            cursor: pointer;
-            border-radius: 50%;
-            background-image: url("./img/wo-profile.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 80% 80%;
-            z-index: 999;
+            text-align: center;
+            font-family: 'Abel';
+            color: rgb(220, 220, 220);
         }
 
         #profilePanel {
@@ -147,10 +170,13 @@
             transform: translateX(-100%);
         }
 
-        p#currentdate {
-            text-align: center;
-            margin-top: 29px;
-            margin-bottom: 0px;
+        #goback {
+            background-image: url("./img/goback.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 200px;
+            position: absolute;
+            padding-top: 120px;
         }
 
         p.profilecontent {
@@ -162,262 +188,281 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script>
-        // var allsearches = [];
-        var allsearches = [{
-                title: "Here is content 1",
-                description: "description"
-            },
-            {
-                title: "Here is content 1",
-                description: "description"
-            },
-            {
-                title: "Here is content 1",
-                description: "description"
-            }
-        ];
-
-
-        $(document).on("pagecreate", "#pageone", function() {
-            $(document).on("swiperight", ".ui-content", function(event) {
-                //console.log("swiperight on ui-content");
-                $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo");
-            });
-        });
-
-        $(document).on("pagecreate", "#pagetwo", function() {
-            $(document).on("swipeleft", ".ui-content", function(event) {
-                $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
-            });
-        })
-
-
-        var deltaY = 0;
-        var endY = 0;
-        var topPanelPos = 0;
-
-
         window.addEventListener("load", function() {
 
+                    var currentPage;
 
-            function buttonClicked() {
-                var currentsearch = getElementById("searchhistory").value;
-                allsearches.push(currentsearch);
-                var allsearchesString = JSON.stringify(allsearches);
-                localStorage.setItem("allsearches", allsearchesString);
+                    var page1 = document.getElementById(pageone);
+                    var page2 = document.getElementById(pagetwo);
+                    var page3 = document.getElementById(searchpage);
+                    var page4 = document.getElementById(mywhichonepage);
 
-            }
-
-            function load() {
-                var allsearchesString = localStorage.getItem("allsearches");
-                if (allsearchString != null) {
-                    allsearches = JSON.parse(allsearchesString);
-                    for (var i = 0; i < allsearches.length; i++) {
-                        document.getElementById("savedsearches").innerHTML+=allsearch[i];
-
-                    }
-                }
-                document.getElementById("searchtext").value=localStorage.getItem("lastsearch");
-                searchButton=document.getElementById("searchbutton");
-                searchbutton.addEventListener("click",buttonClicked);
-            }
+                    var profilePanel = document.getElementById("profilePanel");
+                    var
+                    var menu = document.getElementById("topmenu");
+                    var searchbutton = document.getElementById("searchbutton");
 
 
-            var topPanel = document.getElementById("topPanel");
+                    function changeContent() {
 
-            document.addEventListener("touchstart", function(event) {
-                topPanel.style.transition = "none";
-                endY = event.targetTouches[0].clientY;
-                //console.log(startY);
-            })
+                        if (currentPage === page1 && currentPage === page2) {
+                            menu.style.backgroundImage = "url('./img/wo-profile.png')";
+                            chooseThis();
 
-            document.addEventListener("touchmove", function(event) {
-                var startY = event.targetTouches[0].clientY;
-                deltaY = startY - endY;
-                endY = startY;
-                topPanelPos += deltaY;
-                if (topPanelPos < 300) {
-                    topPanel.style.transform = "translateY(" + topPanelPos + "px)";
-                } else {
-                    topPanel.style.transform = "translateY(100%)";
-                }
-                //console.log(deltaY);
-            });
+                        } else if (currentPage === page3 && currentPage === page4) {
+                            menu.style.backgroundImage = "url('./img/goback.png')";
+                            searchbutton.style.display = "none";
+                            goBack();
+                        }
+                      }
+//????? should it be there?
+                        function goToPageTwo() {
+                            $(document).on("pagecreate", "#pageone", function() {
+                                $(document).on("swiperight", ".ui-content", function(event) {
 
-            document.addEventListener("touchend", function(event) {
-                topPanel.style.transition = "transform 0.3s ease-in-out";
-                if (topPanelPos >= 30) {
-                    // topPanel.style.transform = "translateY(30%)";
-                    topPanelPos = 200;
-                } else if (topPanelPos < 30) {
-                    topPanel.style.transform = "translateY(-100%)";
-                    topPanelPos = 0;
-                }
-                deltaY = 0;
+                                    $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo");
+                                });
+                            });
 
-                var topPanelY = topPanel.style.transform;
-                if (topPanelY == "translateY(0%)") {
-                    topPanel.style.zIndex = 996;
-                } else {
-                    topPanel.style.zIndex = 1000;
-                }
-            });
+                            $(document).on("pagecreate", "#pagetwo", function() {
+                                $(document).on("swipeleft", ".ui-content", function(event) {
+                                    $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
+                                });
+                            })
+                        }
 
-            var menuStatus = false;
-            var menu = document.getElementById("profilemenu");
-            console.log(menu);
-            var profilePanel = document.getElementById("profilePanel");
+                        currentPage = window.location.hash;
 
-            var toggleMenu = function(status) {
+                        // var searchBtn;
+                        //
+                        var myhistory = { "history": [
 
-                if (status === true) {
-                    profilePanel.style.transform = "translateX(0%)";
-                } else {
-                    profilePanel.style.transform = "translateX(-100%)";
-                }
-            }
+                                {
+                                    "title": "passage 1",
+                                    "subtitle": "the first"
+                                },
 
-            menu.addEventListener("click", function() {
-                console.log("hi");
+                                {
+                                    "title": "passage 2",
+                                    "subtitle": "the second"
+                                },
 
-                menuStatus = !menuStatus;
-                toggleMenu(menuStatus);
-            });
-            // var panelStatus=false;
-            // var page1=document.getElementById("pageone");
-            //
-            // var backPanel=function(status){
-            //   if(status=== true){
-            //     profilePanel.style.transform = "translateX(-100%)";
-            //   }else{
-            //     profilePanel.style.transform = "translateX(0%)";
-            //   }
-            // }
-            //
-            // page1.addEventListener("click",function(){
-            //   panelStatus=!panelStatus;
-            //   backPanel(panelStatus);
-            // })
+                                {
+                                    "title": "passage 3",
+                                    "subtitle": "the third"
+                                }
+                            ]}
+                        var allsearches=[];
+                        var currentsearch = getElementById("searchbox").value;
+                        for (var i = 0; i < myhistory.length){
+                          if(currentsearch=myhistory[i].title;
+                          allsearches.push(currentsearch[i]);
+                        }
+                        for(var i=0;i<allsearches.length;i++){
+                          document.getElementById("searchresult").innerHTML+="<p>+myhistoty.history[i].title"+"</p>";
+
+                        }
+
+                        function reset() {
+
+                        }
+
+                        function goToSliderPanel() {
+
+                            var menuStatus = false;
+
+                            // console.log(menu);
+
+                            var toggleMenu = function(status) {
+
+                                if (status === true) {
+                                    profilePanel.style.transform = "translateX(0%)";
+                                } else {
+                                    profilePanel.style.transform = "translateX(-100%)";
+                                }
+                            }
+
+                            menu.addEventListener("click", function() {
+                                menuStatus = !menuStatus;
+                                toggleMenu(menuStatus);
+                            });
+                        }
+
+                        // GO to Search page
+                        function loadSearchPage() {
+
+                            searchbutton.addEventListener("click", function() {
+                                $(":mobile-pagecontainer").pagecontainer("change", "#searchPage");
+                            });
+                        }
 
 
-            var bar1 = document.getElementById("p1-bar");
-            var page1 = document.getElementById("pageone");
-            var collectState = false;
+                        //CLILK TO CHOOSE
+
+                        function chooseThis() {
+
+                            var bar1 = document.getElementById("footer");
+                            var collectState = false;
+
+                            var changeColor = function(state) {
+                                if (state === true) {
+                                    bar1.style.backgroundPosition = "center top";
+                                } else {
+                                    bar1.style.backgroundPosition = "center bottom";
+                                }
+                            }
+                            currentPage.addEventListener("click", function() {
+                                collectState = !collectState;
+                                changeColor(collectState);
+                            });
+
+                        }
 
 
-            var changeColor = function(state) {
-                if (state === true) {
-                  bar1.style.backgroundPosition = "center top";
-                } else {
-                  bar1.style.backgroundPosition = "center bottom";
-                }
-            }
-            page1.addEventListener("click", function() {
-                collectState = !collectState;
-                changeColor(collectState);
-            });
+                        function goback(){
 
-            var currentHash = "";
+                          var goback = document.getElementById("topmenu");
+                          goback.addEventListener("click", function() {
+                              $(":mobile-pagecontainer").pagecontainer("change", "#pageone");// how to come back to last page
+                          })
 
-            var mywhichone = document.getElementById("mywhichone");
-            mywhichone.addEventListener("click", function() {
-                currentHash = window.location.hash;
-                $(":mobile-pagecontainer").pagecontainer("change", "#mywhichonepage")
+                        }
 
-            });
+                        var currentHash = "";
+                        // current hash only happen in page one and two
 
-            var whichBackBtn = document.getElementById("whichBackBtn");
-            whichBackBtn.addEventListener("click",function(){
-              //console.log("uadgsykfj");
-              $(":mobile-pagecontainer").pagecontainer("change", currentHash);
-            });
+                        var mywhichone = document.getElementById("mywhichone");
+                        mywhichone.addEventListener("click", function() {
+                            currentHash = window.location.hash;
+                            $(":mobile-pagecontainer").pagecontainer("change", "#mywhichonepage")
 
-        });
+                        });
+
+                        var whichBackBtn = document.getElementById("whichBackBtn");
+                        whichBackBtn.addEventListener("click", function() {
+                            //console.log("uadgsykfj");
+                            $(":mobile-pagecontainer").pagecontainer("change", currentPage);
+                        });
+
+                    });
     </script>
 
 </head>
 
 <body>
-    <div id="savedsearches">
-    </div>
-    <div id="topPanel">
 
-        <div id="toppanelcontainer">
-            <div id="search">
-                <input type="text" value="search" id="searchhistory"><br />
-                <button id="searchbutton" type="button"> Search </button>
-            </div>
-        </div>
-    </div>
 
+
+
+    <!-- slider panel -->
     <div id="profilePanel">
-        <p class="profilecontent">Myself</p>
+
         <p class="profilecontent" id="mywhichone">My Which One</p>
         <P class="profilecontent">Setting</p>
 
     </div>
 
-    <div id="profilemenu" class="wo-header">
+    //
+    <!-- header -->
+    <div id="header" class="mom">
+
+        <div id="topmenu" class="child"></div>
+
+        <div id="date" class="child">
+            03/27/2017
+        </div>
+
+        <div id="searchbutton" class="child"></div>
+
 
     </div>
 
+    <div id="footer" class="bar">
 
-    <div data-role="page" id="pageone" class="wo-page">
+    </div>
 
-        <div data-role="header" data-theme="c" class="wo-header">
-
-            <p id="currentdate">03/27/2017</p>
-
-        </div>
-
+    //
+    <!--  page two content-->
+    <div data-role="page" id="pageone" class="wopage">
 
         <div data-role="main" class="ui-content">
 
-            <div id="p1-content">
+            <div class="p-content">
 
-                <div id="p1-pic" class="wo-pic">
-                </div>
+
+                <div <div id="p1-pic" class="wo-pic"></div>
 
                 <div id="p1-title" class="wo-title1">
-                    Dear Angelica
+                    James Turrell
                 </div>
+
                 <div id="p1-title" class="wo-title2">
-                    How Oculus Reinvented VR Animation With a Little Help From Geena Davis
+                    How James Turrell Knocked the Art World Off Its Feet
                 </div>
 
+                <div class="clickToRead">
+                    Read the full content
+                </div>
+
+
             </div>
-
-            <div data-role="footer" id="p1-bar" class="bar">
-
-            </div>
-
         </div>
     </div>
 
-    <div data-role="page" id="pagetwo" class="wopage">
+
+    //
+    <!-- Page one content -->
+    <div data-role="page" id="pagetwo" class="wo-page">
 
         <div data-role="main" class="ui-content">
-            <div <div id="p2-pic" class="wo-pic">
-            </div>
-            <div id="p2-title" class="wo-title1">
-                Dear Angelica
+
+            <div class="p-content">
+
+                <div id="p2-pic" class="wo-pic">
+                </div>
+
+                <div id="p2-title" class="wo-title1">
+                    Dear Angelica
+                </div>
+                <div id="p2-title" class="wo-title2">
+                    How Oculus Reinvented VR Animation With a Little Help From Geena Davis
+                </div>
+                <div class="clickToRead">
+                    Read the full content
+                </div>
+
             </div>
 
-            <div id="p2-title" class="wo-title2">
-                How Oculus Reinvented VR Animation With a Little Help From Geena Davis
-            </div>
-            <div id="p2-bar" class="bar">
-
-            </div>
         </div>
+
     </div>
+
+
+    //
+    <!-- my whichone page -->
     <div data-role="page" id="mywhichonepage" class="wo-page">
         <div data-role="main" class="ui-content">
             <p>This is mywhichonepage</p>
-            <a id = "whichBackBtn" class="ui-btn-c">Back</a>
+            <a id="whichBackBtn" class="ui-btn-c">Back</a>
         </div>
-        <div>
+    </div>
 
+
+    //
+    <!-- search page -->
+    <div data-role="page" id="searchpage" class="wo-page">
+
+        <div id="search">
+
+            <input placeholder=" Search" id="searchbox"><br />
+            <button id="searchbtn" type="button"> Search </button>
+
+        </div>
+        <div id="searchresult">
+
+        </div>
+
+    </div>
 
 
 </body>
