@@ -6,11 +6,11 @@
 
     <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
 
     <style>
         body {
-            /*font-family: 'Abel';*/
+            font-family: 'Abel' !important;
         }
 
         .ui-page {
@@ -40,44 +40,58 @@
         }
 
         .mom {
-            display: table;
+            display: block;
         }
 
         .child {
-            display: table-cell;
+            position: absolute;
+            top:0px;
+            bottom: 0px;
+            margin: auto;
         }
 
         #header {
             background-image: url("./img/wo-header-bg.jpg");
-            background-repeat: no-repeat;
+            background-repeat: repeat-x;
             background-position: bottom;
             position: absolute;
             padding-left: 3.5%;
             padding-right: 3.5%;
-            padding-top: 3%;
-            width: 93.2%;
-            height: 8%;
+            padding-top: 2%;
+            width: 100%;
+            height: 7%;
             z-index: 998;
+            box-sizing: border-box;
         }
 
         #searchbutton {
-            width: 8%;
-            height: 7%;
+            width: 7%;
+            height: 100%;
             background-image: url("./img/search.png");
             background-position: center;
             background-repeat: no-repeat;
             background-size: 80%;
+            right:3%;
+        }
+
+        #date {
+            width: 80%;
+            text-align: center;
+            left: 0px;
+            right:0px;
+            height: 60%;
         }
 
         #topmenu {
-            height: 9%;
-            width: 8%;
+            height: 100%;
+            width: 7%;
             cursor: pointer;
             border-radius: 50%;
             background-image: url("./img/wo-profile.png");
             background-position: center;
             background-repeat: no-repeat;
             background-size: 80%;
+            left: 3%;
         }
 
         #footer {
@@ -92,13 +106,8 @@
             bottom: 8%;
         }
 
-        #date {
-            padding-top: 4%;
-            text-align: center;
-        }
-
         .p-content {
-            margin-top: 17%;
+            margin-top: 20%;
             width: 100%;
             height: 75%;
         }
@@ -190,161 +199,177 @@
     <script>
         window.addEventListener("load", function() {
 
-                    var currentPage;
+                    // var app = require('express')();
+                    // var fs = require('fs');
+                    // app.get('/results.json', function(req,res){
+                    // 	res.sendFile(__dirname+'/results.json');
+                    // });
 
-                    var page1 = document.getElementById(pageone);
-                    var page2 = document.getElementById(pagetwo);
-                    var page3 = document.getElementById(searchpage);
-                    var page4 = document.getElementById(mywhichonepage);
+                    // fs.readFile('history.json', 'utf8', function(err, data) {
+                    //     if (err) throw err;
+                    //     obj = JSON.parse(data);
+                    //     if (msg != "") {
+                    //         obj.results.push(msg);
+                    //
+                    //         fs.writeFile('history.json', JSON.stringify(obj, null, 4), function(err) {
+                    //             if (err) {
+                    //                 console.log(err);
+                    //             } else {
+                    //                 console.log("JSON saved!");
+                    //             }
+                    //         });
+                    // }
 
-                    var profilePanel = document.getElementById("profilePanel");
-                    var
-                    var menu = document.getElementById("topmenu");
-                    var searchbutton = document.getElementById("searchbutton");
+                    ui.init();
 
+                });
 
-                    function changeContent() {
-
-                        if (currentPage === page1 && currentPage === page2) {
-                            menu.style.backgroundImage = "url('./img/wo-profile.png')";
-                            chooseThis();
-
-                        } else if (currentPage === page3 && currentPage === page4) {
-                            menu.style.backgroundImage = "url('./img/goback.png')";
-                            searchbutton.style.display = "none";
-                            goBack();
-                        }
-                      }
-//????? should it be there?
-                        function goToPageTwo() {
-                            $(document).on("pagecreate", "#pageone", function() {
-                                $(document).on("swiperight", ".ui-content", function(event) {
-
-                                    $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo");
-                                });
-                            });
-
-                            $(document).on("pagecreate", "#pagetwo", function() {
-                                $(document).on("swipeleft", ".ui-content", function(event) {
-                                    $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
-                                });
-                            })
-                        }
-
-                        currentPage = window.location.hash;
-
-                        // var searchBtn;
-                        //
-                        var myhistory = { "history": [
-
-                                {
-                                    "title": "passage 1",
-                                    "subtitle": "the first"
-                                },
-
-                                {
-                                    "title": "passage 2",
-                                    "subtitle": "the second"
-                                },
-
-                                {
-                                    "title": "passage 3",
-                                    "subtitle": "the third"
-                                }
-                            ]}
-                        var allsearches=[];
-                        var currentsearch = getElementById("searchbox").value;
-                        for (var i = 0; i < myhistory.length){
-                          if(currentsearch=myhistory[i].title;
-                          allsearches.push(currentsearch[i]);
-                        }
-                        for(var i=0;i<allsearches.length;i++){
-                          document.getElementById("searchresult").innerHTML+="<p>+myhistoty.history[i].title"+"</p>";
-
-                        }
-
-                        function reset() {
-
-                        }
-
-                        function goToSliderPanel() {
-
-                            var menuStatus = false;
-
-                            // console.log(menu);
-
-                            var toggleMenu = function(status) {
-
-                                if (status === true) {
-                                    profilePanel.style.transform = "translateX(0%)";
-                                } else {
-                                    profilePanel.style.transform = "translateX(-100%)";
-                                }
-                            }
-
-                            menu.addEventListener("click", function() {
-                                menuStatus = !menuStatus;
-                                toggleMenu(menuStatus);
-                            });
-                        }
-
-                        // GO to Search page
-                        function loadSearchPage() {
-
-                            searchbutton.addEventListener("click", function() {
-                                $(":mobile-pagecontainer").pagecontainer("change", "#searchPage");
-                            });
-                        }
-
-
-                        //CLILK TO CHOOSE
-
-                        function chooseThis() {
-
-                            var bar1 = document.getElementById("footer");
-                            var collectState = false;
-
-                            var changeColor = function(state) {
-                                if (state === true) {
-                                    bar1.style.backgroundPosition = "center top";
-                                } else {
-                                    bar1.style.backgroundPosition = "center bottom";
-                                }
-                            }
-                            currentPage.addEventListener("click", function() {
-                                collectState = !collectState;
-                                changeColor(collectState);
-                            });
-
-                        }
-
-
-                        function goback(){
-
-                          var goback = document.getElementById("topmenu");
-                          goback.addEventListener("click", function() {
-                              $(":mobile-pagecontainer").pagecontainer("change", "#pageone");// how to come back to last page
-                          })
-
-                        }
-
-                        var currentHash = "";
-                        // current hash only happen in page one and two
-
-                        var mywhichone = document.getElementById("mywhichone");
-                        mywhichone.addEventListener("click", function() {
-                            currentHash = window.location.hash;
-                            $(":mobile-pagecontainer").pagecontainer("change", "#mywhichonepage")
-
-                        });
-
-                        var whichBackBtn = document.getElementById("whichBackBtn");
-                        whichBackBtn.addEventListener("click", function() {
-                            //console.log("uadgsykfj");
-                            $(":mobile-pagecontainer").pagecontainer("change", currentPage);
-                        });
+                $(document).on("pagecreate", "#pageone", function() {
+                    $(document).on("swiperight", ".ui-content", function(event) {
+                        $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo")
+                          ui.pageNumChecker();
 
                     });
+                });
+
+                $(document).on("pagecreate", "#pagetwo", function() {
+                    $(document).on("swipeleft", ".ui-content", function(event) {
+                        $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
+                          ui.pageNumChecker();
+                    });
+                })
+
+
+
+                    var ui = {
+                      pageNum : 1,
+                      lastPage : "",
+                      currentPage : "",
+                    };
+
+                    ui.init = function() {
+
+                        ui.topMenuStatus = false;
+                        ui.collectState = false;
+
+
+                        ui.topmenu = document.getElementById("topmenu");
+                        ui.searchBtn = document.getElementById("searchbutton");
+
+                        ui.pageNumChecker();
+
+                        topmenu.addEventListener("click", function() {
+                            ui.chooseThis();
+                        });
+
+                        ui.searchBtn.addEventListener("click", function() {
+                          $(":mobile-pagecontainer").pagecontainer("change", "#searchpage")
+                          ui.pageNumChecker();
+                        })
+
+                        ui.topmenu.addEventListener("click", function() {
+
+                          if(ui.pageNum >= 3){
+                            ui.goBack();
+                          }else{
+                            ui.goToSliderPanel();
+                          }
+
+                        });
+
+                    };
+
+                    ui.pageNumChecker = function(){
+
+                      ui.lastPage = ui.currentPage;
+
+                      ui.currentPage = window.location.hash;
+
+
+                      if(ui.currentPage + "" == "" || ui.currentPage == "#pageone"){
+                          ui.pageNum = 1;
+                      }
+                      else if (ui.currentPage == "#pagetwo") {
+                          ui.pageNum = 2;
+                      } else if (ui.currentPage == "#searchpage") {
+                          ui.pageNum = 3;
+                      } else if (ui.currentPage == "#mywhichonepage") {
+                          ui.pageNum = 4;
+                      }
+
+                      ui.updatePage(ui.pageNum);
+                    }
+
+                    ui.updatePage = function(pageNum) {
+
+                      //console.log(pageNum);
+
+                        if (pageNum < 3) {
+                            topmenu.style.backgroundImage = "url('./img/wo-profile.png')";
+                            ui.searchBtn.style.display = "block";
+
+                        } else if (pageNum >= 3) {
+                            ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
+                            ui.searchBtn.style.display = "none";
+
+                        }
+                    };
+
+                    ui.goToSliderPanel = function() {
+
+                        ui.topMenuStatus = !ui.topMenuStatus;
+                        var profilePanel = document.getElementById("profilePanel");
+
+                        if (ui.topMenuStatus === true) {
+
+                            profilePanel.style.transform = "translateX(0%)";
+                        } else {
+                            profilePanel.style.transform = "translateX(-100%)";
+                        }
+                    };
+
+                    ui.goToWhichOnePage = function() {
+                        var mywhichone = document.getElementById("mywhichone");
+                        mywhichone.addEventListener("click", function() {
+                            ui.update(3);
+                        });
+                    };
+
+                    ui.goBack = function() {
+                      $(":mobile-pagecontainer").pagecontainer("change", ui.lastPage);
+                      ui.pageNumChecker();
+                    };
+
+                    ui.chooseThis = function() {
+
+                        var chooseBtn = document.getElementById("footer");
+
+                        var changeColor = function(state) {
+                            if (state === true) {
+                                chooseBtn.style.backgroundPosition = "center top";
+                            } else {
+                                chooseBtn.style.backgroundPosition = "center bottom";
+                            }
+                        }
+                        chooseBtn.addEventListener("click", function() {
+                            ui.collectState = !ui.collectState;
+                            changeColor(collectState);
+                        });
+
+                    };
+
+                    ui.getSearchResult =  function(){
+                        var allsearches = [];
+                        var currentsearch = document.getElementById("searchbox").value;
+                        for (var i = 0; i < myhistory.length; i++) {
+                            if (currentsearch == myhistory[i].title)
+                                allsearches.push(currentsearch[i]);
+                        }
+                        for (var i = 0; i < allsearches.length; i++) {
+                            document.getElementById("searchresult").innerHTML += "<p>+myhistoty.history[i].title" + "</p>";
+                        }
+                    };
+
     </script>
 
 </head>
@@ -362,16 +387,14 @@
 
     </div>
 
-    //
+
     <!-- header -->
     <div id="header" class="mom">
 
         <div id="topmenu" class="child"></div>
-
         <div id="date" class="child">
             03/27/2017
         </div>
-
         <div id="searchbutton" class="child"></div>
 
 
@@ -381,7 +404,7 @@
 
     </div>
 
-    //
+
     <!--  page two content-->
     <div data-role="page" id="pageone" class="wopage">
 
@@ -410,7 +433,6 @@
     </div>
 
 
-    //
     <!-- Page one content -->
     <div data-role="page" id="pagetwo" class="wo-page">
 
@@ -438,7 +460,6 @@
     </div>
 
 
-    //
     <!-- my whichone page -->
     <div data-role="page" id="mywhichonepage" class="wo-page">
         <div data-role="main" class="ui-content">
@@ -448,16 +469,13 @@
     </div>
 
 
-    //
     <!-- search page -->
-    <div data-role="page" id="searchpage" class="wo-page">
+    <div style = "padding:64px 24px 0px 24px; box-sizing:border-box;" data-role="page" id="searchpage" class="wo-page">
 
-        <div id="search">
 
-            <input placeholder=" Search" id="searchbox"><br />
-            <button id="searchbtn" type="button"> Search </button>
+        <input placeholder=" Search" id="searchbox"><br />
+        <!-- <button id="searchbtn" type="button"> Search </button> -->
 
-        </div>
         <div id="searchresult">
 
         </div>
