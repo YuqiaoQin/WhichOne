@@ -45,7 +45,7 @@
 
         .child {
             position: absolute;
-            top:0px;
+            top: 0px;
             bottom: 0px;
             margin: auto;
         }
@@ -71,15 +71,30 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: 80%;
-            right:3%;
+            right: 3%;
+        }
+
+        input[type=text]:focus {
+            width: 100%;
+        }
+
+        input[type=text] {
+            width: 130px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            padding: 64px 24px 0px 24px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
         }
 
         #date {
-            width: 80%;
+            padding-top: 4%;
+            margin-left: 36%;
             text-align: center;
-            left: 0px;
-            right:0px;
-            height: 60%;
+
         }
 
         #topmenu {
@@ -188,188 +203,245 @@
             padding-top: 120px;
         }
 
+        #historylist {
+            margin-top: 13%;
+        }
+
         p.profilecontent {
             margin-left: 15px;
         }
+
+        #mycontent {
+            overflow: scroll;
+        }
+        .historyimg{
+           height:30%;
+        }
+        .historydate{
+          margin-left: 10%;
+          margin-right:20%;
+        }
+
     </style>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
     <script>
         window.addEventListener("load", function() {
 
-                    // var app = require('express')();
-                    // var fs = require('fs');
-                    // app.get('/results.json', function(req,res){
-                    // 	res.sendFile(__dirname+'/results.json');
-                    // });
 
-                    // fs.readFile('history.json', 'utf8', function(err, data) {
-                    //     if (err) throw err;
-                    //     obj = JSON.parse(data);
-                    //     if (msg != "") {
-                    //         obj.results.push(msg);
-                    //
-                    //         fs.writeFile('history.json', JSON.stringify(obj, null, 4), function(err) {
-                    //             if (err) {
-                    //                 console.log(err);
-                    //             } else {
-                    //                 console.log("JSON saved!");
-                    //             }
-                    //         });
-                    // }
+            ui.init();
 
-                    ui.init();
+        });
 
-                });
-
-                $(document).on("pagecreate", "#pageone", function() {
-                    $(document).on("swiperight", ".ui-content", function(event) {
-                        $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo")
-                          ui.pageNumChecker();
-
-                    });
-                });
-
-                $(document).on("pagecreate", "#pagetwo", function() {
-                    $(document).on("swipeleft", ".ui-content", function(event) {
-                        $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
-                          ui.pageNumChecker();
-                    });
-                })
+        var allhistory = [];
 
 
+        $(function() {
 
-                    var ui = {
-                      pageNum : 1,
-                      lastPage : "",
-                      currentPage : "",
-                    };
+            $("#searchbox").autocomplete({
+                minLength: 0,
+                source: allhistory,
 
-                    ui.init = function() {
+                focus: function(event, selected) {
+                    $("#searchresult").val(selected.item.value);
+                    return false;
+                },
 
-                        ui.topMenuStatus = false;
-                        ui.collectState = false;
-
-
-                        ui.topmenu = document.getElementById("topmenu");
-                        ui.searchBtn = document.getElementById("searchbutton");
-
-                        ui.pageNumChecker();
-
-                        topmenu.addEventListener("click", function() {
-                            ui.chooseThis();
-                        });
-
-                        ui.searchBtn.addEventListener("click", function() {
-                          $(":mobile-pagecontainer").pagecontainer("change", "#searchpage")
-                          ui.pageNumChecker();
-                        });
-
-                        ui.topmenu.addEventListener("click", function() {
-
-                          if(ui.pageNum >= 3){
-                            ui.goBack();
-                          }else{
-                            ui.goToSliderPanel();
-                          }
-
-                        });
-
-                    };
-
-                    ui.pageNumChecker = function(){
-
-                      ui.lastPage = ui.currentPage;
-
-                      ui.currentPage = window.location.hash;
+                select: function(event, selected) {
+                    $("#searchresult").html('<a href = "#contentpage">' + selected.item.value+selected.item.desc + "</a>");
+                }
+            });
+        });
 
 
-                      if(ui.currentPage + "" == "" || ui.currentPage == "#pageone"){
-                          ui.pageNum = 1;
-                      }
-                      else if (ui.currentPage == "#pagetwo") {
-                          ui.pageNum = 2;
-                      } else if (ui.currentPage == "#searchpage") {
-                          ui.pageNum = 3;
-                      } else if (ui.currentPage == "#mywhichonepage") {
-                          ui.pageNum = 4;
-                      }
+        $(document).on("pagecreate", "#pageone", function() {
+            $(document).on("swiperight", ".ui-content", function(event) {
+                $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo")
+                ui.pageNumChecker();
 
-                      ui.updatePage(ui.pageNum);
-                    }
+            });
+        });
 
-                    ui.updatePage = function(pageNum) {
+        $(document).on("pagecreate", "#pagetwo", function() {
+            $(document).on("swipeleft", ".ui-content", function(event) {
+                $(":mobile-pagecontainer").pagecontainer("change", "#pageone")
+                ui.pageNumChecker();
+            });
+        })
 
-                      //console.log(pageNum);
 
-                        if (pageNum < 3) {
-                            topmenu.style.backgroundImage = "url('./img/wo-profile.png')";
-                            ui.searchBtn.style.display = "block";
 
-                        } else if (pageNum >= 3) {
-                            ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
-                            ui.searchBtn.style.display = "none";
 
-                        }
-                    };
+        var ui = {
+            pageNum: 1,
+            lastPage: "",
+            currentPage: "",
+        };
 
-                    ui.goToSliderPanel = function() {
+        ui.init = function() {
 
-                        ui.topMenuStatus = !ui.topMenuStatus;
-                        var profilePanel = document.getElementById("profilePanel");
+            ui.topMenuStatus = false;
+            ui.collectState = false;
 
-                        if (ui.topMenuStatus === true) {
 
-                            profilePanel.style.transform = "translateX(0%)";
-                        } else {
-                            profilePanel.style.transform = "translateX(-100%)";
-                        }
-                    };
+            ui.topmenu = document.getElementById("topmenu");
+            ui.searchBtn = document.getElementById("searchbutton");
+            ui.footer = document.getElementById("footer");
+            ui.mywhichone = document.getElementById("mywhichone");
+            ui.profilePanel = document.getElementById("profilePanel");
+            ui.clickToRead = document.getElementById("readPageone");
 
-                    ui.goToWhichOnePage = function() {
-                        var mywhichone = document.getElementById("mywhichone");
-                        mywhichone.addEventListener("click", function() {
-                            ui.update(3);
-                        });
-                    };
+            ui.title=document.getElementById("date");
 
-                    ui.goBack = function() {
-                      $(":mobile-pagecontainer").pagecontainer("change", ui.lastPage);
-                      ui.pageNumChecker();
-                    };
 
-                    ui.chooseThis = function() {
+            ui.p1Titel = document.getElementById("p1title").innerHTML;
+            ui.p1Titel1 = document.getElementById("p1title1").innerHTML;
 
-                        var chooseBtn = document.getElementById("footer");
 
-                        var changeColor = function(state) {
-                            if (state === true) {
-                                chooseBtn.style.backgroundPosition = "center top";
-                            } else {
-                                chooseBtn.style.backgroundPosition = "center bottom";
-                            }
-                        }
-                        chooseBtn.addEventListener("click", function() {
-                            ui.collectState = !ui.collectState;
-                            changeColor(collectState);
-                        });
 
-                    };
+            ui.pageNumChecker();
 
-                    ui.getSearchResult =  function(){
-                        var allsearches = [];
-                        var currentsearch = document.getElementById("searchbox").value;
-                        for (var i = 0; i < myhistory.length; i++) {
-                            if (currentsearch == myhistory[i].title)
-                                allsearches.push(currentsearch[i]);
-                        }
-                        for (var i = 0; i < allsearches.length; i++) {
-                            document.getElementById("searchresult").innerHTML += "<p>+myhistoty.history[i].title" + "</p>";
-                        }
-                    };
+            ui.footer.addEventListener("click", function() {
+                ui.chooseThis();
+            });
 
+            ui.searchBtn.addEventListener("click", function() {
+                $(":mobile-pagecontainer").pagecontainer("change", "#searchpage")
+                ui.pageNumChecker();
+            });
+
+            ui.topmenu.addEventListener("click", function() {
+
+                if (ui.pageNum >= 3) {
+                    ui.goBack();
+                } else {
+                    ui.topMenuStatus = !ui.topMenuStatus;
+
+                    ui.goToSliderPanel();
+                }
+
+            });
+            ui.mywhichone.addEventListener("click", function() {
+                $(":mobile-pagecontainer").pagecontainer("change", "#mywhichonepage");
+                ui.pageNumChecker();
+            });
+
+            ui.clickToRead.addEventListener("click", function() {
+                $(":mobile-pagecontainer").pagecontainer("change", "#contentpage");
+            });
+
+
+        };
+
+        ui.pageNumChecker = function() {
+
+            ui.lastPage = ui.currentPage;
+
+            ui.currentPage = window.location.hash;
+
+
+            if (ui.currentPage + "" == "" || ui.currentPage == "#pageone") {
+              ui.title.innerHTML = "  03/27/2017";
+                ui.pageNum = 1;
+            } else if (ui.currentPage == "#pagetwo") {
+                ui.title.innerHTML = "  03/27/2017";
+                ui.pageNum = 2;
+            } else if (ui.currentPage == "#searchpage") {
+                ui.pageNum = 3;
+                ui.title.style.display= "none";
+            } else if (ui.currentPage == "#mywhichonepage") {
+                ui.title.innerHTML = "my whichone";
+                ui.pageNum = 4;
+            }else if(ui.currentPage == "#contentpage"){
+              ui.pageNum = 5;
+            }
+
+            ui.updatePage(ui.pageNum);
+        }
+
+        ui.updatePage = function(pageNum) {
+
+            //console.log(pageNum);
+
+            if (pageNum < 3) {
+                ui.topmenu.style.backgroundImage = "url('./img/wo-profile.png')";
+                ui.searchBtn.style.display = "block";
+                ui.footer.style.display = "block";
+                ui.profilePanel.style.display = "block";
+
+
+            } else if (pageNum >=3) {
+                ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
+                ui.searchBtn.style.display = "none";
+                ui.footer.style.display = "none"
+                ui.profilePanel.style.display = "none";
+
+            }
+            // if(pageNum = 4){
+            //   ui.title.innerHTML = "my whichone";
+            // }
+        };
+
+        ui.goToSliderPanel = function() {
+
+
+            if (ui.topMenuStatus === true) {
+
+                profilePanel.style.transform = "translateX(0%)";
+
+            } else {
+                profilePanel.style.transform = "translateX(-100%)";
+            }
+
+
+        };
+
+        ui.goBack = function() {
+            $(":mobile-pagecontainer").pagecontainer("change", ui.lastPage);
+            ui.pageNumChecker();
+        };
+
+
+        ui.chooseThis = function(state) {
+
+            ui.collectState = !ui.collectState;
+
+            if (ui.collectState === true) {
+                ui.footer.style.backgroundPosition = "center top";
+            } else {
+                ui.footer.style.backgroundPosition = "center bottom";
+            }
+            ui.pageNumChecker();
+
+            if (ui.pageNum = 1) {
+
+                var newobj = {
+                    "value": "ui.p1Titel",
+                    "desc": "ui.p1Titel1"
+                };
+                console.log(newobj);
+
+                allhistory.push(newobj);
+
+
+            } else if (ui.pageNum = 2) {
+
+                var p2Tite2 = document.getElementById("p2title").innerHTML;
+                var p2Titel2 = document.getElementById("p2title2").innerHTML;
+
+                var newobj = {
+                    "value": "p2Tite2",
+                    "desc": "p2Titel2"
+                };
+
+                allhistory.push(newobj);
+            }
+
+        };
     </script>
 
 </head>
@@ -415,15 +487,15 @@
 
                 <div <div id="p1-pic" class="wo-pic"></div>
 
-                <div id="p1-title" class="wo-title1">
+                <div id="p1title" class="wo-title1">
                     James Turrell
                 </div>
 
-                <div id="p1-title" class="wo-title2">
+                <div id="p1title1" class="wo-title2">
                     How James Turrell Knocked the Art World Off Its Feet
                 </div>
 
-                <div class="clickToRead">
+                <div class="clickToRead" id="readPageone">
                     Read the full content
                 </div>
 
@@ -443,13 +515,13 @@
                 <div id="p2-pic" class="wo-pic">
                 </div>
 
-                <div id="p2-title" class="wo-title1">
+                <div id="p2title" class="wo-title1">
                     Dear Angelica
                 </div>
-                <div id="p2-title" class="wo-title2">
+                <div id="p2title2" class="wo-title2">
                     How Oculus Reinvented VR Animation With a Little Help From Geena Davis
                 </div>
-                <div class="clickToRead">
+                <div class="clickToRead" id="readPagetwo">
                     Read the full content
                 </div>
 
@@ -459,28 +531,91 @@
 
     </div>
 
+    <!-- search page -->
+    <div data-role="page" id="searchpage" class="wo-page">
+
+        <div data-role="main" class="ui-content">
+
+            <input id="searchbox" type="text" placeholder="Search .."><br />
+
+            <div id="searchresult"></div>
+        </div>
+
+    </div>
 
     <!-- my whichone page -->
     <div data-role="page" id="mywhichonepage" class="wo-page">
         <div data-role="main" class="ui-content">
-            <p>This is mywhichonepage</p>
-            <a id="whichBackBtn" class="ui-btn-c">Back</a>
+
+            <div id="historylist">
+              <table style="width:100%">
+                <tr><a href="#contentpage">
+                    <td><img class = "historyimg" src="./img/history5.jpg"></td>
+                    <td><div class = "historydate">6<br/>Mar</div></td>
+                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                  </a>
+                </tr>
+                <tr>
+                    <td><img class = "historyimg" src="./img/history2.jpg"></td>
+                    <td><div class = "historydate">7<br/>Mar</div></td>
+                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                </tr>
+                <tr>
+                    <td><img class = "historyimg" src="./img/history3.png"></td>
+                    <td><div class = "historydate">8<br/>Mar</div></td>
+                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                </tr>
+                <tr>
+                    <td><img class = "historyimg" src="./img/history4.jpg"></td>
+                    <td><div class = "historydate">9<br/>Mar</div></td>
+                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                </tr>
+                <tr>
+                    <td><img class = "historyimg" src="./img/history1.png"></td>
+                    <td><div class = "historydate">10<br/>Mar</div></td>
+                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                </tr>
+
+              </table>
+
+
+            </div>
         </div>
     </div>
 
 
-    <!-- search page -->
-    <div style = "padding:64px 24px 0px 24px; box-sizing:border-box;" data-role="page" id="searchpage" class="wo-page">
 
+    <div data-role="page" id="contentpage" class="wo-page">
+        <div date-role="main" class="ui-content">
+            <div id="mycontent">
+             <p class="p-block">
+               It was a beautiful Thursday morning in May, and everything was going wrong. James Truell had six days to prepare for the biggest museum exhibition of his life — 11 complex installation pieces at the Los Angeles County Museum of Art — but he didn’t have a single work finished, and he was missing crucial parts.
+             </p>
+             <p class="p-block">
+              “I’m pretty concerned,” Turrell said. “You know, the computer that came back from Russia was completely wiped.”
+             </p>
+             <p class="p-block">
+            Govan tapped a foot underneath the table. The computer was essential. Much of Turrell’s work consists of special rooms that are infused with unusual light, and the computer helps run the show. It had been in Russia for another exhibition, but something went awry in transit.
+            </p>
 
-        <input placeholder=" Search" id="searchbox"><br />
-        <!-- <button id="searchbtn" type="button"> Search </button> -->
-
-        <div id="searchresult">
-
+              <p class="p-block">“There’s nothing in it,” Turrell said. “Nothing’s in it at all! Nothing.”</p>
+              <p class="p-block">Govan shook his head calmly. “That happens in Moscow,” he said.</p>
+              <p class="p-block">
+                Turrell shifted uncomfortably in his seat. “I guess,” he said. “I don’t have a piece that’s finished yet. You know, it’s getting late on everything.”
+               </p>
+               <p class="p-block">“Has the lens left Frankfurt?” Govan asked. This was another essential part.</p>
+               <p class="p-block">“No, it hasn’t left Frankfurt,” Turrell said.</p>
+               <p class="p-block">“I thought it did,” Govan said.</p>
+               <p class="p-block">“No, no,” Turrell said. “It has not left Frankfurt. I don’t know what’s going on.”</p>
+               <p class="p-block">Now it was Govan’s turn to sigh. “You should have been a painter,” he said. “Five years of planning, three months of construction, and there’s not one work of art.”</p>
+               <p class="p-block">The plan had been simple on paper: Turrell would open three major shows inside a month. As soon as he finished the Lacma pieces, he would race to Texas for another huge installation at the Museum of Fine Arts, Houston, and then to Manhattan, where he is opening a show at the Guggenheim next week. Taken together, the three-museum retrospective is the biggest event in the art world this summer. As the curator of the Houston exhibition, Alison de Lima Greene, put it, “This is the first time that three museums have mounted exhibitions of this magnitude in conjunction, all devoted to a single artist.” In total, the retrospective takes up 92,000 square feet.</p>
+              <p class="p-block"> Assembling any Turrell show is a complicated affair. Unlike a show of paintings and sculpture, every piece must be built on site, and even more than with most installation art, his work requires elaborate modifications to the museum itself. Windows must be blocked off or painted black to obscure the outside light; zigzagging hallways are constructed to isolate rooms; and each of the rooms has to be built according to Turrell’s meticulous designs, with hidden pockets to conceal light bulbs and strange protruding corners that confuse the eye. Even the drywall must be hung and finished with exacting precision, so that each corner, curve and planar surface is precise to 1/64th of an inch. It can take hundreds of man-hours to finish a single room; he was erecting 11 at Lacma.</p>
+              <p class="p-block">It is difficult to say much more about the piece without descending into gibberish. This is one of the first things you notice when you spend time around Turrell. Though he is uncommonly eloquent on a host of subjects, from Riemannian geometry to vortex dynamics, he has developed a dense and impenetrable vocabulary to describe his work. Nearly everyone who speaks and writes about Turrell uses the same infernal jargon. It can be grating to endure a cocktail party filled with people talking about the “thingness of light” and the “alpha state” of mind — at least until you’ve seen enough Turrell to realize that, without those terms, it would be nearly impossible to discuss his work. It is simply too far removed from the language of reality, or for that matter, from reality itself.</p>
+              <p class="p-block">I suppose it would be fair to say that all of this was an illusion. The shapes and contours I saw were made entirely of light, while the actual walls of the room were laid out in a way I could never have guessed. When, after a few minutes, a museum worker accidentally flipped on a bright light, I was surprised to see a small chamber in the back, with a workman’s ladder propped against the wall. Turrell lurched toward the doorway in a panic, crying out, “What the hell are they doing?”</p>
+            </div>
         </div>
-
     </div>
+
 
 
 </body>
