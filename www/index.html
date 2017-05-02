@@ -352,12 +352,12 @@
                 ui.pageNum = 2;
             } else if (ui.currentPage == "#searchpage") {
                 ui.pageNum = 3;
-                ui.title.style.display= "none";
+                // ui.title.style.display= "none";
             } else if (ui.currentPage == "#mywhichonepage") {
                 ui.title.innerHTML = "my whichone";
                 ui.pageNum = 4;
             }else if(ui.currentPage == "#contentpage"){
-              ui.pageNum = 5;
+                ui.pageNum = 5;
             }
 
             ui.updatePage(ui.pageNum);
@@ -374,13 +374,13 @@
                 ui.profilePanel.style.display = "block";
 
 
-            } else if (pageNum >=3) {
+            } else if (pageNum=3) {
                 ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
                 ui.searchBtn.style.display = "none";
                 ui.footer.style.display = "none"
                 ui.profilePanel.style.display = "none";
 
-            }
+            }else if
             // if(pageNum = 4){
             //   ui.title.innerHTML = "my whichone";
             // }
@@ -420,8 +420,8 @@
             if (ui.pageNum = 1) {
 
                 var newobj = {
-                    "value": "ui.p1Titel",
-                    "desc": "ui.p1Titel1"
+                    "value": ui.p1Titel,
+                    "desc": ui.p1Titel1
                 };
                 console.log(newobj);
 
@@ -549,11 +549,10 @@
 
             <div id="historylist">
               <table style="width:100%">
-                <tr><a href="#contentpage">
+                <tr id = "historyone">
                     <td><img class = "historyimg" src="./img/history5.jpg"></td>
                     <td><div class = "historydate">6<br/>Mar</div></td>
                     <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
-                  </a>
                 </tr>
                 <tr>
                     <td><img class = "historyimg" src="./img/history2.jpg"></td>
