@@ -95,7 +95,6 @@
             margin-top: 8%;
             margin-left: 37%;
             text-align: center;
-
         }
 
         #topmenu {
@@ -240,6 +239,7 @@
           height:80%;
         }
 
+
         .historyimg{
           padding-top: 8%;
            height:30%;
@@ -257,8 +257,13 @@
         .history{
           margin-bottom: 0px;
           padding: 0px;
+
         }
 
+        .historydate {
+            margin-left: 10%;
+            margin-right: 20%;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -286,11 +291,14 @@
                 focus: function(event, selected) {
                     $("#searchresult").val(selected.item.value);
                     return false;
+
                 },
 
                 select: function(event, selected) {
-                    $("#searchresult").html('<a href = "#contentpage">' + selected.item.value+selected.item.desc + "</a>");
+                    $("#searchresult").html('<a href = "#contentpage">' + selected.item.value + selected.item.desc + "</a>");
                 }
+
+
             });
         });
 
@@ -333,7 +341,7 @@
             ui.historyone = document.getElementById("historyone");
             ui.searchbox=document.getElementById("searchbox");
 
-            ui.title=document.getElementById("date");
+            ui.title = document.getElementById("date");
 
             ui.p1Titel = document.getElementById("p1title").innerHTML;
             ui.p1Titel1 = document.getElementById("p1title1").innerHTML;
@@ -344,6 +352,8 @@
 
             ui.footer.addEventListener("click", function() {
                 ui.chooseThis();
+
+
             });
 
             ui.searchBtn.addEventListener("click", function() {
@@ -383,7 +393,7 @@
 
 
             if (ui.currentPage + "" == "" || ui.currentPage == "#pageone") {
-              ui.title.innerHTML = "  03/27/2017";
+                ui.title.innerHTML = "  03/27/2017";
                 ui.pageNum = 1;
             } else if (ui.currentPage == "#pagetwo") {
                 ui.pageNum = 2;
@@ -391,7 +401,7 @@
                 ui.pageNum = 3;
             } else if (ui.currentPage == "#mywhichonepage") {
                 ui.pageNum = 4;
-            }else if(ui.currentPage == "#contentpage"){
+            } else if (ui.currentPage == "#contentpage") {
                 ui.pageNum = 5;
 
                   console.log(ui.lastPage);
@@ -420,6 +430,7 @@
                 ui.footer.style.display = "none"
                 ui.profilePanel.style.display = "none";
                 ui.title.style.display = "none";
+
                 ui.searchbox.style.display="block"
 
             } else if (pageNum == 4){
@@ -437,6 +448,7 @@
               ui.profilePanel.style.display = "none";
               ui.searchbox.style.display="none"
               ui.title.innerHTML = "  03/27/2017";
+
             }
         };
 
@@ -477,11 +489,11 @@
                     $(":mobile-pagecontainer").pagecontainer("change", "#contentpage");
                     ui.pageNumChecker();
                 });
-                ui.clickToRead[0].style.color="rgb(244,136,32)";
+                ui.clickToRead[0].style.color = "rgb(244,136,32)";
 
             } else {
                 ui.footer.style.backgroundPosition = "center bottom";
-                ui.clickToRead[0].style.color="rgb(220,220,220)";
+                ui.clickToRead[0].style.color = "rgb(220,220,220)";
             }
 
 
@@ -559,11 +571,11 @@
                 <div <div id="p1-pic" class="wo-pic"></div>
 
                 <div id="p1title" class="wo-title1">
-                    James Turrell
+                    Olafur Eliasson
                 </div>
 
                 <div id="p1title1" class="wo-title2">
-                    How James Turrell Knocked the Art World Off Its Feet
+                    Your glacial expectation – With Günther Vogt
                 </div>
 
                 <div class="clicktoread" id="readpageone">
@@ -618,12 +630,13 @@
     <div data-role="page" id="mywhichonepage" class="wo-page">
         <div data-role="main" class="ui-content">
 
+
             <div id = "historylist">
               <table style="width:100%">
                 <tr class = "historycol" id = "historyone">
                     <td class = "history"><img class = "historyimg" src="./img/history5.jpg"></td>
                     <td class = "history"><div class = "historydate">6<br/>Mar</div></td>
-                    <td class = "history"><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
+                    <td class = "history"><div class = "historytitle">Olafur Eliasson<br/>Your glacial expectation – Günther Vogt and Olafur Eliasson</div></td>
                 </tr>
                 <tr class = "historycol">
                     <td class = "history"><img class = "historyimg" src="./img/history2.jpg"></td>
@@ -649,6 +662,7 @@
               </table>
 
 
+
             </div>
         </div>
     </div>
@@ -658,32 +672,30 @@
     <div data-role="page" id="contentpage" class="wo-page">
         <div date-role="main" class="ui-content">
             <div id="mycontent">
-             <p class="p-block" id="contentTitle">
-                JAMES TURRELL
+
+         
+              <p class="p-block" id="contentTitle">
+                Olafur Eliasson
              </p>
              <p class="p-block" id="contentDescription">
-                How James Turrell Knocked the Art</br> World Off Its Feet
+                Your glacial expectation</br> Günther Vogt and Olafur Eliasson
              </p>
-             <p class="p-block">
-               It was a beautiful Thursday morning in May, and everything was going wrong. James Truell had six days to prepare for the biggest museum exhibition of his life — 11 complex installation pieces at the Los Angeles County Museum of Art — but he didn’t have a single work finished, and he was missing crucial parts.“I’m pretty concerned,” Turrell said. “You know, the computer that came back from Russia was completely wiped.”
-             </p>
-             <p class="p-block">
-            Govan tapped a foot underneath the table. The computer was essential. Much of Turrell’s work consists of special rooms that are infused with unusual light, and the computer helps run the show. It had been in Russia for another exhibition, but something went awry in transit.
-            </p>
+                <p class="p-block">
+                    Contemporary art
+                </p>
+                <p class="p-block">
+                  Your glacial expectation – Günther Vogt and Olafur Eliasson
 
-              <p class="p-block">“There’s nothing in it,” Turrell said. “Nothing’s in it at all! Nothing.” Govan shook his head calmly. “That happens in Moscow,” he said.</p>
-              <p class="p-block">
-                Turrell shifted uncomfortably in his seat. “I guess,” he said. “I don’t have a piece that’s finished yet. You know, it’s getting late on everything.”
-               </p>
-               <p class="p-block">“Has the lens left Frankfurt?” Govan asked. This was another essential part.</p>
-               <p class="p-block">“No, it hasn’t left Frankfurt,” Turrell said.</p>
-               <p class="p-block">“I thought it did,” Govan said.</p>
-               <p class="p-block">“No, no,” Turrell said. “It has not left Frankfurt. I don’t know what’s going on.”</p>
-               <p class="p-block">Now it was Govan’s turn to sigh. “You should have been a painter,” he said. “Five years of planning, three months of construction, and there’s not one work of art.”</p>
-               <p class="p-block">The plan had been simple on paper: Turrell would open three major shows inside a month. As soon as he finished the Lacma pieces, he would race to Texas for another huge installation at the Museum of Fine Arts, Houston, and then to Manhattan, where he is opening a show at the Guggenheim next week. Taken together, the three-museum retrospective is the biggest event in the art world this summer. As the curator of the Houston exhibition, Alison de Lima Greene, put it, “This is the first time that three museums have mounted exhibitions of this magnitude in conjunction, all devoted to a single artist.” In total, the retrospective takes up 92,000 square feet.</p>
-              <p class="p-block"> Assembling any Turrell show is a complicated affair. Unlike a show of paintings and sculpture, every piece must be built on site, and even more than with most installation art, his work requires elaborate modifications to the museum itself. Windows must be blocked off or painted black to obscure the outside light; zigzagging hallways are constructed to isolate rooms; and each of the rooms has to be built according to Turrell’s meticulous designs, with hidden pockets to conceal light bulbs and strange protruding corners that confuse the eye. Even the drywall must be hung and finished with exacting precision, so that each corner, curve and planar surface is precise to 1/64th of an inch. It can take hundreds of man-hours to finish a single room; he was erecting 11 at Lacma.</p>
-              <p class="p-block">It is difficult to say much more about the piece without descending into gibberish. This is one of the first things you notice when you spend time around Turrell. Though he is uncommonly eloquent on a host of subjects, from Riemannian geometry to vortex dynamics, he has developed a dense and impenetrable vocabulary to describe his work. Nearly everyone who speaks and writes about Turrell uses the same infernal jargon. It can be grating to endure a cocktail party filled with people talking about the “thingness of light” and the “alpha state” of mind — at least until you’ve seen enough Turrell to realize that, without those terms, it would be nearly impossible to discuss his work. It is simply too far removed from the language of reality, or for that matter, from reality itself.</p>
-              <p class="p-block">I suppose it would be fair to say that all of this was an illusion. The shapes and contours I saw were made entirely of light, while the actual walls of the room were laid out in a way I could never have guessed. When, after a few minutes, a museum worker accidentally flipped on a bright light, I was surprised to see a small chamber in the back, with a workman’s ladder propped against the wall. Turrell lurched toward the doorway in a panic, crying out, “What the hell are they doing?”</p>
+                </p>
+                <p class="p-block">
+                  Ebeltoft, 2012
+                </p>
+
+                <p class="p-block">The construction of the surrounding landscape of Kvadrat Headquarters in Ebeltoft is designed by architect Günther Vogt and artist Olafur Eliasson, who have been collaborating on the project since 2008.</p>
+                <p class="p-block">The great permanent outdoor installation encompass five unique elliptical mirrors designed by Olafur Eliasson, resembling glacial basins, differing in form yet set in horizontal alignment and positioned amongst trees, shrubs and wildlife. The interplay of what is within and without; what is untamed wilderness and serene garden is also reflected in the conceptualisation of the landscape. On slight elevations in the broad meadows are small but dense gatherings of trees, clearly delineated in their oval form.</p>
+                <p class="p-block">April through October we offer guided tours in Your glacial expectation.</p>
+                
+
             </div>
         </div>
     </div>
