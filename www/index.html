@@ -57,7 +57,7 @@
             position: absolute;
             padding-left: 3.5%;
             padding-right: 3.5%;
-            padding-top: 2%;
+            margin-top: 4%;
             width: 100%;
             height: 7%;
             z-index: 998;
@@ -118,7 +118,7 @@
             margin-left: 17%;
             z-index: 998;
             position: absolute;
-            bottom: 8%;
+            bottom: 7%;
         }
 
         .p-content {
@@ -170,7 +170,7 @@
             font-family: 'Abel';
         }
 
-        .clickToRead {
+        .clicktoread {
             margin-top: 6%;
             margin-left: 8%;
             margin-right: 8%;
@@ -190,7 +190,7 @@
             left: 0px;
             box-sizing: border-box;
             padding-top: 120px;
-            z-index: 998;
+            z-index: 997;
             transform: translateX(-100%);
         }
 
@@ -287,16 +287,15 @@
             ui.topMenuStatus = false;
             ui.collectState = false;
 
-
             ui.topmenu = document.getElementById("topmenu");
             ui.searchBtn = document.getElementById("searchbutton");
             ui.footer = document.getElementById("footer");
             ui.mywhichone = document.getElementById("mywhichone");
             ui.profilePanel = document.getElementById("profilePanel");
-            ui.clickToRead = document.getElementById("readPageone");
+            ui.clickToRead = document.getElementsByClassName("clicktoread");
+            ui.historyone = document.getElementById("historyone");
 
             ui.title=document.getElementById("date");
-
 
             ui.p1Titel = document.getElementById("p1title").innerHTML;
             ui.p1Titel1 = document.getElementById("p1title1").innerHTML;
@@ -320,7 +319,6 @@
                     ui.goBack();
                 } else {
                     ui.topMenuStatus = !ui.topMenuStatus;
-
                     ui.goToSliderPanel();
                 }
 
@@ -330,8 +328,10 @@
                 ui.pageNumChecker();
             });
 
-            ui.clickToRead.addEventListener("click", function() {
+
+            ui.historyone.addEventListener("click", function() {
                 $(":mobile-pagecontainer").pagecontainer("change", "#contentpage");
+                ui.pageNumChecker();
             });
 
 
@@ -348,13 +348,10 @@
               ui.title.innerHTML = "  03/27/2017";
                 ui.pageNum = 1;
             } else if (ui.currentPage == "#pagetwo") {
-                ui.title.innerHTML = "  03/27/2017";
                 ui.pageNum = 2;
             } else if (ui.currentPage == "#searchpage") {
                 ui.pageNum = 3;
-                // ui.title.style.display= "none";
             } else if (ui.currentPage == "#mywhichonepage") {
-                ui.title.innerHTML = "my whichone";
                 ui.pageNum = 4;
             }else if(ui.currentPage == "#contentpage"){
                 ui.pageNum = 5;
@@ -372,18 +369,30 @@
                 ui.searchBtn.style.display = "block";
                 ui.footer.style.display = "block";
                 ui.profilePanel.style.display = "block";
+                ui.title.innerHTML = "  03/27/2017";
 
-
-            } else if (pageNum=3) {
+            } else if (pageNum == 3) {
                 ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
                 ui.searchBtn.style.display = "none";
                 ui.footer.style.display = "none"
                 ui.profilePanel.style.display = "none";
+                  ui.title.style.display = "none";
+                $("#searchbox").val = 'aa';
 
-            }else if
-            // if(pageNum = 4){
-            //   ui.title.innerHTML = "my whichone";
-            // }
+            } else if (pageNum == 4){
+              ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
+              ui.searchBtn.style.display = "block";
+              ui.footer.style.display = "none"
+              ui.profilePanel.style.display = "none";
+              ui.title.innerHTML = "my whichone";
+
+            } else if(pageNum == 5){
+              ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
+              ui.searchBtn.style.display = "none";
+              ui.footer.style.display = "none"
+              ui.profilePanel.style.display = "none";
+              ui.title.innerHTML = "  03/27/2017";
+            }
         };
 
         ui.goToSliderPanel = function() {
@@ -410,11 +419,23 @@
 
             ui.collectState = !ui.collectState;
 
+
             if (ui.collectState === true) {
                 ui.footer.style.backgroundPosition = "center top";
+
+                ui.clickToRead[0].addEventListener("click", function() {
+                    $(":mobile-pagecontainer").pagecontainer("change", "#contentpage");
+                    ui.pageNumChecker();
+                });
+                ui.clickToRead[0].style.color="rgb(244,136,32)";
+
             } else {
                 ui.footer.style.backgroundPosition = "center bottom";
+                ui.clickToRead[0].style.color="rgb(220,220,220)";
             }
+
+
+
             ui.pageNumChecker();
 
             if (ui.pageNum = 1) {
@@ -495,7 +516,7 @@
                     How James Turrell Knocked the Art World Off Its Feet
                 </div>
 
-                <div class="clickToRead" id="readPageone">
+                <div class="clicktoread" id="readpageone">
                     Read the full content
                 </div>
 
@@ -521,7 +542,7 @@
                 <div id="p2title2" class="wo-title2">
                     How Oculus Reinvented VR Animation With a Little Help From Geena Davis
                 </div>
-                <div class="clickToRead" id="readPagetwo">
+                <div class="clicktoread" id="readpagetwo">
                     Read the full content
                 </div>
 

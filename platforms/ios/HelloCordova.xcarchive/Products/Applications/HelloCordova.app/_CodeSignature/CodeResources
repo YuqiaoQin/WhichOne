@@ -86,7 +86,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		qDZ4vRL8DWj3vRKBHgkLcfDbqpM=
+		oC6Ki9h7jup9+99FRulS/LStK/k=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		O4Km1JRCXZbwXTzX2SWybuvo5v0=
+		DBzP3gzgoIib0WlcGLi3GKFFcds=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -134,7 +134,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		Dc1F9AWyrP/zlalnuG8cpuerpMk=
+		HZVxKXIS6F2cRvbmodR7+v+UpfI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -238,7 +238,7 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		WYkB/95p8y/pIoCXMJCsETv55xQ=
+		oSGTT47f3BE0nVewS5t6RK5/o3s=
 		</data>
 		<key>www/js/index.js</key>
 		<data>
@@ -471,11 +471,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qDZ4vRL8DWj3vRKBHgkLcfDbqpM=
+			oC6Ki9h7jup9+99FRulS/LStK/k=
 			</data>
 			<key>hash2</key>
 			<data>
-			mEVjotz8tEW6dkfnANEXUOPBLYZ314YsTA11ywURMDw=
+			KqjSdgZGM9glKIktKzRyHwD7vW96/YJd0EGf0TFq2ac=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -493,11 +493,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			O4Km1JRCXZbwXTzX2SWybuvo5v0=
+			DBzP3gzgoIib0WlcGLi3GKFFcds=
 			</data>
 			<key>hash2</key>
 			<data>
-			/Tl/MjHgX5utmePKtHfkEOv6l6aZ8XxW1rpAzcrmhgM=
+			+sNzeaXskmc5gQpHVvfotD2uzLW8rRqlFHJSsqjiZM8=
 			</data>
 		</dict>
 		<key>LaunchImage-568h@2x.png</key>
@@ -592,11 +592,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Dc1F9AWyrP/zlalnuG8cpuerpMk=
+			HZVxKXIS6F2cRvbmodR7+v+UpfI=
 			</data>
 			<key>hash2</key>
 			<data>
-			KOkgOccVR2T2xBPT0+FFNVEL2eeH4w93GVyQ4rKZNNc=
+			XeWZuNxkrQXNSWN2gN9yuV0ofdm7717X31oF4rXUjJM=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -867,11 +867,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WYkB/95p8y/pIoCXMJCsETv55xQ=
+			oSGTT47f3BE0nVewS5t6RK5/o3s=
 			</data>
 			<key>hash2</key>
 			<data>
-			yju2vjT5qpdEWqkX9Js3zQXf0YgD4FlZhTVKMos1lug=
+			t9HpDS/uDCj7DEG44qb+626w34ccRXU/tVOaj2XjJrg=
 			</data>
 		</dict>
 		<key>www/js/index.js</key>
