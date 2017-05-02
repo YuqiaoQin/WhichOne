@@ -57,9 +57,8 @@
             position: absolute;
             padding-left: 3.5%;
             padding-right: 3.5%;
-            margin-top: 4%;
             width: 100%;
-            height: 7%;
+            height: 9%;
             z-index: 998;
             box-sizing: border-box;
         }
@@ -67,6 +66,7 @@
         #searchbutton {
             width: 7%;
             height: 100%;
+            margin-top: 2%;
             background-image: url("./img/search.png");
             background-position: center;
             background-repeat: no-repeat;
@@ -75,24 +75,25 @@
         }
 
         input[type=text]:focus {
-            width: 100%;
+            /*width: 100%;*/
         }
 
         input[type=text] {
-            width: 130px;
+           font-family: 'Abel';
+            width: 320px;
             box-sizing: border-box;
-            border: 2px solid #ccc;
+            border: 2px white;
             border-radius: 4px;
             font-size: 16px;
             background-color: white;
-            padding: 64px 24px 0px 24px;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
+            margin-top: 8%;
+            margin-left: 9%;
+
         }
 
         #date {
-            padding-top: 4%;
-            margin-left: 36%;
+            margin-top: 8%;
+            margin-left: 37%;
             text-align: center;
 
         }
@@ -100,6 +101,7 @@
         #topmenu {
             height: 100%;
             width: 7%;
+            margin-top: 2%;
             cursor: pointer;
             border-radius: 50%;
             background-image: url("./img/wo-profile.png");
@@ -125,6 +127,26 @@
             margin-top: 20%;
             width: 100%;
             height: 75%;
+        }
+        #mycontent{
+           text-align: justify;
+           margin-top: 18%;
+           width: 85%;
+           margin-left: 7.5%;
+           margin-right: 7.5%;
+           overflow: scroll;
+        }
+        #contentTitle{
+          font-weight: bold;
+          font-size: 140%;
+          padding-top: 2px;
+          margin-bottom: 6px;
+        }
+
+        #contentDescription{
+          font-weight: bold;
+          margin-bottom: 0px;
+          margin-top: 2px;
         }
 
         .wo-pic {
@@ -179,7 +201,6 @@
             font-family: 'Abel';
             color: rgb(220, 220, 220);
         }
-
         #profilePanel {
             transition: all 0.3s ease-in-out;
             width: 200px;
@@ -196,30 +217,46 @@
 
         #goback {
             background-image: url("./img/goback.png");
+            background-size: 60%;
             background-position: center;
             background-repeat: no-repeat;
-            width: 200px;
+            width: 80%;
             position: absolute;
-            padding-top: 120px;
-        }
-
-        #historylist {
-            margin-top: 13%;
+            padding-top: 140px;
         }
 
         p.profilecontent {
             margin-left: 15px;
         }
 
-        #mycontent {
-            overflow: scroll;
+        #historylist {
+            margin-top: 18%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
         }
+        .historycol{
+
+          box-shadow: 4px 4px 3px rgba(220, 220, 220, 0.3);
+          height:80%;
+        }
+
         .historyimg{
+          padding-top: 8%;
            height:30%;
         }
         .historydate{
-          margin-left: 10%;
-          margin-right:20%;
+          text-align: center;
+          padding-left: 30%;
+          padding-right: 20%;
+        }
+        .historytitle{
+          padding-top: 0px;
+          padding-left: 8%;
+          padding-right: 6%;
+        }
+        .history{
+          margin-bottom: 0px;
+          padding: 0px;
         }
 
     </style>
@@ -294,6 +331,7 @@
             ui.profilePanel = document.getElementById("profilePanel");
             ui.clickToRead = document.getElementsByClassName("clicktoread");
             ui.historyone = document.getElementById("historyone");
+            ui.searchbox=document.getElementById("searchbox");
 
             ui.title=document.getElementById("date");
 
@@ -355,7 +393,11 @@
                 ui.pageNum = 4;
             }else if(ui.currentPage == "#contentpage"){
                 ui.pageNum = 5;
+
+                  console.log(ui.lastPage);
+
             }
+
 
             ui.updatePage(ui.pageNum);
         }
@@ -369,6 +411,7 @@
                 ui.searchBtn.style.display = "block";
                 ui.footer.style.display = "block";
                 ui.profilePanel.style.display = "block";
+                ui.searchbox.style.display="none"
                 ui.title.innerHTML = "  03/27/2017";
 
             } else if (pageNum == 3) {
@@ -376,21 +419,23 @@
                 ui.searchBtn.style.display = "none";
                 ui.footer.style.display = "none"
                 ui.profilePanel.style.display = "none";
-                  ui.title.style.display = "none";
-                $("#searchbox").val = 'aa';
+                ui.title.style.display = "none";
+                ui.searchbox.style.display="block"
 
             } else if (pageNum == 4){
               ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
               ui.searchBtn.style.display = "block";
               ui.footer.style.display = "none"
               ui.profilePanel.style.display = "none";
-              ui.title.innerHTML = "my whichone";
+              ui.searchbox.style.display="none"
+              ui.title.innerHTML = "My Which One";
 
             } else if(pageNum == 5){
               ui.topmenu.style.backgroundImage = "url('./img/goback.png')";
               ui.searchBtn.style.display = "none";
               ui.footer.style.display = "none"
               ui.profilePanel.style.display = "none";
+              ui.searchbox.style.display="none"
               ui.title.innerHTML = "  03/27/2017";
             }
         };
@@ -411,6 +456,11 @@
 
         ui.goBack = function() {
             $(":mobile-pagecontainer").pagecontainer("change", ui.lastPage);
+            ui.pageNumChecker();
+        };
+
+        ui.goBack2 = function() {
+            $(":mobile-pagecontainer").pagecontainer("change", "#page");
             ui.pageNumChecker();
         };
 
@@ -444,7 +494,6 @@
                     "value": ui.p1Titel,
                     "desc": ui.p1Titel1
                 };
-                console.log(newobj);
 
                 allhistory.push(newobj);
 
@@ -488,6 +537,7 @@
         <div id="date" class="child">
             03/27/2017
         </div>
+        <input autofocus="autofocus" id="searchbox" type="text" placeholder="Search ..">
         <div id="searchbutton" class="child"></div>
 
 
@@ -557,7 +607,7 @@
 
         <div data-role="main" class="ui-content">
 
-            <input id="searchbox" type="text" placeholder="Search .."><br />
+
 
             <div id="searchresult"></div>
         </div>
@@ -568,32 +618,32 @@
     <div data-role="page" id="mywhichonepage" class="wo-page">
         <div data-role="main" class="ui-content">
 
-            <div id="historylist">
+            <div id = "historylist">
               <table style="width:100%">
-                <tr id = "historyone">
-                    <td><img class = "historyimg" src="./img/history5.jpg"></td>
-                    <td><div class = "historydate">6<br/>Mar</div></td>
-                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                <tr class = "historycol" id = "historyone">
+                    <td class = "history"><img class = "historyimg" src="./img/history5.jpg"></td>
+                    <td class = "history"><div class = "historydate">6<br/>Mar</div></td>
+                    <td class = "history"><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
                 </tr>
-                <tr>
-                    <td><img class = "historyimg" src="./img/history2.jpg"></td>
-                    <td><div class = "historydate">7<br/>Mar</div></td>
-                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                <tr class = "historycol">
+                    <td class = "history"><img class = "historyimg" src="./img/history2.jpg"></td>
+                    <td class = "history"><div class = "historydate">7<br/>Mar</div></td>
+                    <td class = "history"><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
                 </tr>
-                <tr>
+                <tr class = "historycol">
                     <td><img class = "historyimg" src="./img/history3.png"></td>
                     <td><div class = "historydate">8<br/>Mar</div></td>
-                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                    <td><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
                 </tr>
-                <tr>
+                <tr class = "historycol">
                     <td><img class = "historyimg" src="./img/history4.jpg"></td>
                     <td><div class = "historydate">9<br/>Mar</div></td>
-                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                    <td><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
                 </tr>
-                <tr>
+                <tr class = "historycol">
                     <td><img class = "historyimg" src="./img/history1.png"></td>
                     <td><div class = "historydate">10<br/>Mar</div></td>
-                    <td>James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</td>
+                    <td><div class = "historytitle">James TuRrell<br/> How James Turrell Knocked the Art World Off Its Feet</div></td>
                 </tr>
 
               </table>
@@ -608,18 +658,20 @@
     <div data-role="page" id="contentpage" class="wo-page">
         <div date-role="main" class="ui-content">
             <div id="mycontent">
-             <p class="p-block">
-               It was a beautiful Thursday morning in May, and everything was going wrong. James Truell had six days to prepare for the biggest museum exhibition of his life — 11 complex installation pieces at the Los Angeles County Museum of Art — but he didn’t have a single work finished, and he was missing crucial parts.
+             <p class="p-block" id="contentTitle">
+                JAMES TURRELL
+             </p>
+             <p class="p-block" id="contentDescription">
+                How James Turrell Knocked the Art</br> World Off Its Feet
              </p>
              <p class="p-block">
-              “I’m pretty concerned,” Turrell said. “You know, the computer that came back from Russia was completely wiped.”
+               It was a beautiful Thursday morning in May, and everything was going wrong. James Truell had six days to prepare for the biggest museum exhibition of his life — 11 complex installation pieces at the Los Angeles County Museum of Art — but he didn’t have a single work finished, and he was missing crucial parts.“I’m pretty concerned,” Turrell said. “You know, the computer that came back from Russia was completely wiped.”
              </p>
              <p class="p-block">
             Govan tapped a foot underneath the table. The computer was essential. Much of Turrell’s work consists of special rooms that are infused with unusual light, and the computer helps run the show. It had been in Russia for another exhibition, but something went awry in transit.
             </p>
 
-              <p class="p-block">“There’s nothing in it,” Turrell said. “Nothing’s in it at all! Nothing.”</p>
-              <p class="p-block">Govan shook his head calmly. “That happens in Moscow,” he said.</p>
+              <p class="p-block">“There’s nothing in it,” Turrell said. “Nothing’s in it at all! Nothing.” Govan shook his head calmly. “That happens in Moscow,” he said.</p>
               <p class="p-block">
                 Turrell shifted uncomfortably in his seat. “I guess,” he said. “I don’t have a piece that’s finished yet. You know, it’s getting late on everything.”
                </p>
