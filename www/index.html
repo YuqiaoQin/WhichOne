@@ -253,6 +253,7 @@
 
                 select: function(event, selected) {
                     $("#searchresult").html('<a href = "#contentpage">' + selected.item.value+selected.item.desc + "</a>");
+                    
                 }
             });
         });
@@ -307,6 +308,8 @@
 
             ui.footer.addEventListener("click", function() {
                 ui.chooseThis();
+
+
             });
 
             ui.searchBtn.addEventListener("click", function() {
@@ -420,8 +423,8 @@
             if (ui.pageNum = 1) {
 
                 var newobj = {
-                    "value": "ui.p1Titel",
-                    "desc": "ui.p1Titel1"
+                    "value": ui.p1Titel,
+                    "desc": ui.p1Titel1
                 };
                 console.log(newobj);
 
